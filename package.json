@@ -8,15 +8,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/PandaMaru/backend-test-1.git"
+    "url": "git+https://github.com/ArithmeticOp/backend-test-1-mine.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/PandaMaru/backend-test-1/issues"
+    "url": "https://github.com/ArithmeticOp/backend-test-1-mine/issues"
   },
-  "homepage": "https://github.com/PandaMaru/backend-test-1#readme",
+  "homepage": "https://github.com/ArithmeticOp/backend-test-1-mine",
   "devDependencies": {
     "chai": "^4.2.0",
     "chai-each": "0.0.1",
