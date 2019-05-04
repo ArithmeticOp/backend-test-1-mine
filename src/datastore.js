@@ -82,6 +82,49 @@ module.exports = class Datastore {
     };
 
     billing() { // 5.ดูข้อมูลรายละเอียดผลประกอบการทั้งหมดได้
-        
+        return new Promise((resolve) => {
+            fs.readFile('src/database.json', 'utf8', async function readFileCallback(err, output) {
+                if (err) resolve(null);
+                else {
+                    if (output) {
+                        let json = JSON.parse(output);
+                        let { data } = json;
+                        let bill = [];
+                        for (let i in data) {
+                            if (data[i].status === 1) {
+                                bill.push(data[i]);
+                            }
+                        }
+                        resolve(bill);
+                    }
+                    else resolve(null);
+                }
+            });
+        });
+    };
+
+    recordPrice(key, price) {
+        return new Promise((resolve) => {
+            fs.readFile('src/database.json', 'utf8', async function readFileCallback(err, output) {
+                if (err) resolve(null);
+                else {
+                    if (output) {
+                        let json = JSON.parse(output);
+                        let { data } = json;
+                        for (let i in data) {
+                            if (data[i]._key === key) {
+                                data[i].price = price;
+                                fs.writeFile('src/database.json', JSON.stringify(json), (err) => {
+                                    if (err) resolve(null);
+                                    resolve(data[i]);
+                                });
+                            }
+                        }
+                        // resolve(null);
+                    }
+                    else resolve(null);
+                }
+            });
+        });
     };
 };

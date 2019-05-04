@@ -30,10 +30,22 @@ describe(`datastore`, function () {
             expect(output).to.have.own.property('export_time');
         });
     });
-    
+
     describe(`listProduct`, function () {
-        it(`listProduct should return { type, detail, import_time, _key, status, export_time }`, async function () {
+        it(`listProduct should return { type, detail, import_time, _key, status, export_time } all product`, async function () {
             let output = await datastore.listProduct();
+            expect(output).each.have.property('type');
+            expect(output).each.have.property('detail');
+            expect(output).each.have.property('import_time');
+            expect(output).each.have.property('_key');
+            expect(output).each.have.property('status');
+            expect(output).each.have.property('export_time');
+        });
+    });
+
+    describe(`billing`, function () {
+        it(`billing should return { type, detail, import_time, _key, status, export_time }`, async function () {
+            let output = await datastore.billing();
             expect(output).each.have.property('type');
             expect(output).each.have.property('detail');
             expect(output).each.have.property('import_time');

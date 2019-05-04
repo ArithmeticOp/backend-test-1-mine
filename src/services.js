@@ -15,8 +15,8 @@ exports.exportProduct = async function (req, res) {
     if (_key) {
         let productinfo = await datastore.exportProduct(_key);
         let price = calpricing(productinfo.type, productinfo.detail, productinfo.import_time, productinfo.export_time);
-        productinfo.price = price;
-        res.send(productinfo);
+        let productprice = await datastore.recordPrice(_key, price);
+        res.send(productprice);
     }
     else res.send(null);
 };
@@ -25,8 +25,8 @@ exports.listProduct = async function (req, res) {
     res.send(await datastore.listProduct());
 };
 
-exports.billing = function (req, res) {
-
+exports.billing = async function (req, res) {
+    res.send(await datastore.billing());
 };
 
 function validatedata(type, detail) {
